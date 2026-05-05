@@ -57,7 +57,7 @@ export const STATS = [
   { label: "CHALLENGES", value: "$1K TO $10K+", icon: CreditCard }
 ];
 
-export const TELEGRAM_LINK = "https://t.me/XAURVIP_PLUS";
+export const TELEGRAM_LINK = "https://t.me/+OnwxXx1j595kYzVk";
 
 export interface Review {
   id: string;
