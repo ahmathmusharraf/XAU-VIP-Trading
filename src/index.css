@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-gold-50: #fffdf5;
+  --color-gold-100: #fdf2d0;
+  --color-gold-200: #f9e3a5;
+  --color-gold-300: #f1cf6d;
+  --color-gold-400: #e2b33c;
+  --color-gold-500: #d4a017;
+  --color-gold-600: #b8860b;
+  --color-gold-700: #916a0d;
+  --color-gold-800: #755611;
+  --color-gold-900: #644a14;
+  --color-gold-950: #3a2a09;
+
+  --color-acc-blue: #0ea5e9;
+}
+
+@layer base {
+  body {
+    @apply bg-[#030303] text-white antialiased selection:bg-gold-500 selection:text-black;
+  }
+}
+
+.glow-gold {
+  box-shadow: 0 0 25px rgba(184, 134, 11, 0.15), 0 0 50px rgba(184, 134, 11, 0.08);
+}
+
+.glow-blue {
+  box-shadow: 0 0 25px rgba(14, 165, 233, 0.2);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #f9e3a5 0%, #d4a017 50%, #916a0d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-2xl border border-white/10;
+}
+
+.gold-glass {
+  background: linear-gradient(135deg, rgba(238, 176, 26, 0.1) 0%, rgba(238, 176, 26, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(238, 176, 26, 0.2);
+}
+
+.mobile-nav-shadow {
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.9);
+}
+
+.gold-border-gradient {
+  border-image: linear-gradient(to right, #b07412, #ffc433, #b07412) 1;
+}
