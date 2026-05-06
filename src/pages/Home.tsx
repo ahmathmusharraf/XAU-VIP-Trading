@@ -15,92 +15,137 @@ const REVIEWS_DATA = [
 ];
 
 function ReviewSlider() {
-  const [index, setIndex] = React.useState(0);
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const itemsPerPage = isMobile ? 1 : 4;
-  const groups = Array.from({ length: Math.ceil(REVIEWS_DATA.length / itemsPerPage) }, (_, i) =>
-    REVIEWS_DATA.slice(i * itemsPerPage, i * itemsPerPage + itemsPerPage)
-  );
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % groups.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [groups.length]);
+  const row1 = [...REVIEWS_DATA.slice(0, 4), ...REVIEWS_DATA.slice(0, 4)];
+  const row2 = [...REVIEWS_DATA.slice(4, 8), ...REVIEWS_DATA.slice(4, 8)];
 
   return (
-    <div className="relative">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${index}-${itemsPerPage}`}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-        >
-          {groups[index]?.map((review) => (
-            <div
-              key={review.user}
-              className="p-4 md:p-6 rounded-[20px] md:rounded-[32px] bg-black border border-white/10 relative overflow-hidden group hover:border-gold-500/50 transition-all duration-500 shadow-2xl flex flex-col h-full"
-            >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-acc-blue via-gold-500 to-acc-blue opacity-30" />
-              
-              <div className="flex justify-between items-start mb-4 md:mb-8">
-                <div className="p-2 md:p-3 rounded-xl md:rounded-2xl bg-white/5 border border-white/10">
-                   <div className="text-[8px] md:text-[10px] font-black tracking-widest text-gray-500 uppercase">Pair</div>
-                   <div className="text-xs md:text-sm font-black text-white">{review.pair} <span className="text-gold-500 uppercase">sell</span></div>
-                </div>
-                <div className="text-right text-acc-blue">
-                   <div className="text-[8px] md:text-[10px] font-black tracking-widest text-gray-400 uppercase italic">Status</div>
-                   <div className="text-xs md:text-sm font-black uppercase flex items-center justify-end gap-1">Hit TP <CheckCircle2 size={12} /></div>
-                </div>
-              </div>
+    <div className="relative overflow-hidden py-10 md:py-20 -mx-4 px-4">
+      {/* Background Glows */}
+      <div className="absolute top-1/2 left-0 w-64 h-64 bg-gold-500/10 blur-[100px] rounded-full -translate-y-1/2 pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-64 h-64 bg-acc-blue/10 blur-[100px] rounded-full -translate-y-1/2 pointer-events-none" />
 
-              <div className="flex-grow">
-                <p className="text-xs md:text-lg font-bold text-white mb-4 md:mb-10 leading-tight md:leading-snug">"{review.text}"</p>
-              </div>
-              
-              <div className="flex items-center justify-between pt-3 md:pt-8 border-t border-white/5">
-                <div className="flex items-center gap-2 md:gap-3">
-                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-900 border border-gold-400 p-0.5 shadow-lg" />
-                  <span className="font-bold text-white/50 text-[10px] md:text-sm">@{review.user}</span>
-                </div>
-                <div>
-                  <div className="text-[8px] md:text-[10px] font-black tracking-widest text-gray-500 uppercase text-right mb-0.5 md:mb-1">Profit</div>
-                  <div className="text-sm md:text-2xl font-black font-mono text-acc-blue">{review.profit} <span className="text-[10px]">USD</span></div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </AnimatePresence>
+      <div className="flex flex-col gap-6 md:gap-10">
+        {/* Row 1: Left to Right */}
+        <div className="flex overflow-hidden group">
+          <motion.div 
+            animate={{ x: [0, -1000] }}
+            transition={{ 
+              duration: 30, 
+              repeat: Infinity, 
+              ease: "linear",
+            }}
+            className="flex gap-4 md:gap-8 pr-4 md:pr-8 hover:[animation-play-state:paused]"
+          >
+            {row1.map((review, i) => (
+              <ReviewCard key={`r1-${i}`} review={review} />
+            ))}
+          </motion.div>
+        </div>
 
-      <div className="mt-8 md:mt-20 flex justify-center gap-2 md:gap-3">
-        {groups.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`h-1 md:h-1.5 transition-all duration-500 rounded-full ${
-              index === i ? 'w-8 md:w-12 bg-gold-500 glow-gold' : 'w-1.5 md:w-2 bg-white/20 hover:bg-white/40'
-            }`}
-          />
-        ))}
+        {/* Row 2: Right to Left */}
+        <div className="flex overflow-hidden group">
+          <motion.div 
+            animate={{ x: [-1000, 0] }}
+            transition={{ 
+              duration: 35, 
+              repeat: Infinity, 
+              ease: "linear",
+            }}
+            className="flex gap-4 md:gap-8 pr-4 md:pr-8"
+          >
+            {row2.map((review, i) => (
+              <ReviewCard key={`r2-${i}`} review={review} />
+            ))}
+          </motion.div>
+        </div>
       </div>
+      
+      {/* Side Fades for Infinite Look */}
+      <div className="absolute inset-y-0 left-0 w-20 md:w-60 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-20 md:w-60 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
     </div>
   );
 }
 
+interface ReviewCardProps {
+  review: {
+    text: string;
+    user: string;
+    profit: string;
+    pair: string;
+  };
+}
+
+const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
+  return (
+    <motion.div
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="w-[240px] md:w-[320px] shrink-0 p-3 md:p-5 rounded-[20px] md:rounded-[32px] bg-[#0A0A0A] border border-white/5 relative group transition-all duration-500 hover:border-gold-500/30 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)]"
+    >
+      {/* Decorative Corner */}
+      <div className="absolute top-0 right-0 w-14 md:w-20 h-14 md:h-20 bg-gradient-to-bl from-gold-500/10 to-transparent rounded-tr-[32px] pointer-events-none" />
+      
+      <div className="flex items-start justify-between mb-3 md:mb-6">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-900 p-0.5 shadow-lg">
+            <div className="w-full h-full rounded-full bg-black flex items-center justify-center font-black text-gold-500 text-[10px] md:text-sm">
+              {review.user[0]}
+            </div>
+          </div>
+          <div>
+            <div className="text-[10px] md:text-sm font-black text-white">@{review.user}</div>
+            <div className="flex items-center gap-1">
+               <Star size={8} className="fill-gold-500 text-gold-500" />
+               <Star size={8} className="fill-gold-500 text-gold-500" />
+               <Star size={8} className="fill-gold-500 text-gold-500" />
+               <Star size={8} className="fill-gold-500 text-gold-500" />
+               <Star size={8} className="fill-gold-500 text-gold-500" />
+            </div>
+          </div>
+        </div>
+        <div className="bg-acc-blue/10 border border-acc-blue/20 px-2 py-0.5 rounded-full flex items-center gap-1 shadow-[0_0_10px_rgba(14,165,233,0.1)]">
+           <div className="w-1 h-1 rounded-full bg-acc-blue animate-pulse" />
+           <span className="text-[7px] md:text-[9px] font-black text-acc-blue tracking-widest uppercase">Verified</span>
+        </div>
+      </div>
+
+      <p className="text-xs md:text-lg font-bold text-white mb-4 md:mb-8 leading-tight tracking-tight italic">"{review.text}"</p>
+      
+      <div className="grid grid-cols-2 gap-3 pt-3 md:pt-6 border-t border-white/5">
+        <div>
+          <div className="text-[7px] md:text-[9px] font-black tracking-widest text-gray-500 uppercase mb-1">Asset</div>
+          <div className="text-[10px] md:text-sm font-black text-white flex items-center gap-1 uppercase">
+            {review.pair} <span className="bg-gold-500/20 text-gold-500 px-1 py-0.5 rounded text-[7px] md:text-[9px]">SELL</span>
+          </div>
+        </div>
+        <div className="text-right">
+          <div className="text-[7px] md:text-[9px] font-black tracking-widest text-gray-500 uppercase mb-1">Profit Secured</div>
+          <div className="text-xs md:text-xl font-black font-mono text-acc-blue">{review.profit} <span className="text-[8px] md:text-xs">USD</span></div>
+        </div>
+      </div>
+      
+      {/* Interactive Hover Glow */}
+      <div className="absolute inset-0 rounded-[32px] bg-gold-500/0 group-hover:bg-gold-500/[0.02] transition-colors duration-500 pointer-events-none" />
+    </motion.div>
+  );
+};
+
 export default function Home() {
+  const [heroIndex, setHeroIndex] = React.useState(0);
+  const HERO_IMAGES = [
+    "https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2069&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1621285853634-713b8dd6b5ee?q=80&w=1974&auto=format&fit=crop"
+  ];
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -119,7 +164,7 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-20 md:pt-24 px-4 overflow-hidden">
+      <section className="relative min-h-[85vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-16 md:pt-32 px-4">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,#d4a01715_0%,transparent_60%)] pointer-events-none" />
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-acc-blue/10 blur-[120px] rounded-full pointer-events-none" />
@@ -173,71 +218,129 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative hidden lg:block"
+            className="relative block order-first lg:order-last w-full"
           >
             {/* Background Chart Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-500/10 blur-[150px] rounded-full pointer-events-none" />
             
-            {/* Gold Bars & Bull Representation */}
-            <div className="relative z-10 flex flex-col items-center">
-               <motion.div 
-                 animate={{ y: [0, -10, 0] }}
-                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                 className="relative"
+            {/* Animated Image Carousel */}
+            <div className="relative z-10 flex flex-col items-center mt-2 mb-10 lg:my-0">
+               <div className="relative w-full max-w-[550px] md:max-w-[1050px] h-[320px] md:h-[620px] rounded-[32px] md:rounded-[80px] overflow-hidden rotate-1 md:rotate-2 border border-gold-500/20 shadow-2xl glow-gold mx-auto">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={heroIndex}
+                      src={HERO_IMAGES[heroIndex]}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1.05 }}
+                      exit={{ opacity: 0, scale: 1.15 }}
+                      transition={{ duration: 1.5, ease: "easeInOut" }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      alt="Gold Trading"
+                      referrerPolicy="no-referrer"
+                    />
+                  </AnimatePresence>
+                  {/* Subtle overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+               </div>
+                            {/* Daily Scalps Badge */}
+                <motion.div 
+                 initial={{ opacity: 0, rotate: 10, y: 20 }}
+                 animate={{ opacity: 1, rotate: -3, y: 0 }}
+                 transition={{ delay: 1, duration: 0.8 }}
+                 whileHover={{ scale: 1.1, rotate: 0 }}
+                 className="absolute -top-1 -right-1 md:-top-12 md:-right-12 bg-black/80 backdrop-blur-xl border border-gold-500/50 p-2 md:p-5 rounded-[16px] md:rounded-[24px] glow-gold flex flex-col items-center text-center scale-[0.6] md:scale-110 z-30 shadow-[0_20px_40px_rgba(212,160,23,0.3)] group/badge overflow-hidden origin-center"
                >
-                 <img 
-                   src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=2070&auto=format&fit=crop" 
-                   alt="Gold Bars"
-                   className="w-[550px] h-auto rounded-[40px] glow-gold border border-gold-500/20 shadow-2xl rotate-2" 
-                   referrerPolicy="no-referrer"
-                 />
-                 
-                 {/* Daily Scalps Badge (matching image) */}
-                 <div className="absolute -top-10 -right-10 bg-black/80 backdrop-blur-xl border-2 border-gold-500 p-6 rounded-2xl glow-gold flex flex-col items-center text-center -rotate-3 scale-110">
-                    <span className="text-gray-400 text-[10px] font-black tracking-widest uppercase">Daily</span>
-                    <span className="text-4xl font-black text-white">5-6</span>
-                    <span className="text-gold-500 text-[11px] font-black tracking-tighter uppercase">Solid Scalps</span>
-                    <div className="text-[10px] font-bold text-gray-400 mt-1">BUY & SELL SIGNALS</div>
-                 </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-500/10 to-transparent pointer-events-none" />
+                  <div className="w-5 h-5 md:w-8 md:h-8 rounded-full bg-gold-500/20 flex items-center justify-center mb-0.5 md:mb-2 border border-gold-500/30">
+                     <Zap size={10} className="text-gold-500 md:w-4 md:h-4 group-hover/badge:animate-pulse" />
+                  </div>
+                  <span className="text-gray-400 text-[6px] md:text-[9px] font-black tracking-widest uppercase">Expert Daily</span>
+                  <div className="flex items-baseline gap-0.5 md:gap-1">
+                    <span className="text-lg md:text-4xl font-black text-white">5-6</span>
+                    <span className="text-gold-500 text-[8px] md:text-xs font-black">+</span>
+                  </div>
+                  <span className="text-gold-500 text-[7px] md:text-[10px] font-black tracking-tighter uppercase mb-0.5 md:mb-2 text-nowrap">High-Win Scalps</span>
+                  
+                  <div className="flex gap-0.5">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} size={4} className="fill-gold-500 text-gold-500 md:w-2 md:h-2" />
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Growth Card */}
+                <motion.div 
+                 initial={{ opacity: 0, x: -20, rotate: 5 }}
+                 animate={{ opacity: 1, x: 0, rotate: -5 }}
+                 transition={{ delay: 1.2, duration: 0.8 }}
+                 whileHover={{ scale: 1.05, rotate: -2 }}
+                 className="absolute -bottom-1 -left-1 md:-bottom-10 md:-left-10 bg-black/60 backdrop-blur-[20px] p-2 md:p-7 rounded-[20px] md:rounded-[32px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group/card z-20 overflow-hidden scale-[0.6] md:scale-100 origin-center"
+               >
+                  {/* Internal Glow */}
+                  <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-acc-blue/10 blur-[30px] md:blur-[40px] rounded-full -mr-10 -mt-10 md:-mr-16 md:-mt-16 pointer-events-none" />
+                  
+                  <div className="flex items-center justify-between mb-1 md:mb-4 relative z-10">
+                    <div className="flex items-center gap-1.5 md:gap-3">
+                      <div className="w-6 h-6 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-acc-blue/20 flex items-center justify-center border border-acc-blue/30 glow-blue">
+                        <TrendingUp className="text-acc-blue w-3 h-3 md:w-4 md:h-4 group-hover/card:scale-110 transition-transform" size={12} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5 md:gap-2">
+                           <span className="text-acc-blue font-black text-[7px] md:text-xs tracking-[0.1em] uppercase">Live Results</span>
+                           <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-acc-blue animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.8)]" />
+                        </div>
+                        <div className="text-[6px] md:text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1 md:gap-2">
+                          Real-time
+                          <span className="bg-white/5 px-1 py-0.5 rounded border border-white/10 text-acc-blue text-[6px] md:text-[8px]">XAU/USD</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10">
+                    <div className="text-base md:text-4xl font-black font-mono tracking-tighter text-white mb-0 md:mb-1">
+                      +$8,450<span className="text-acc-blue">.21</span>
+                    </div>
+                    <div className="flex items-center gap-1 md:gap-2">
+                       <div className="flex gap-0.5">
+                         <div className="h-0.5 md:h-1 w-3 md:w-6 bg-acc-blue rounded-full group-hover/card:w-8 transition-all duration-500" />
+                         <div className="h-0.5 md:h-1 w-1 md:w-2 bg-acc-blue/30 rounded-full" />
+                         <div className="h-0.5 md:h-1 w-1.5 md:w-4 bg-acc-blue/60 rounded-full" />
+                       </div>
+                       <span className="text-[6px] md:text-[10px] font-black text-acc-blue/80">+24.5%</span>
+                    </div>
+                  </div>
+
+                  {/* Scanline Effect */}
+                  <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-acc-blue/20 to-transparent top-1/2 -translate-y-1/2 animate-scan" style={{ animationDuration: '3s' }} />
                </motion.div>
 
-               {/* Growth Card */}
-               <motion.div 
-                 initial={{ opacity: 0, x: 20 }}
-                 animate={{ opacity: 1, x: 0 }}
-                 transition={{ delay: 0.8 }}
-                 className="absolute -bottom-10 -left-10 bg-black/90 backdrop-blur-2xl p-6 rounded-3xl border border-white/10 glow-blue rotate-[-5deg] z-20"
-               >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-acc-blue/20 flex items-center justify-center">
-                      <TrendingUp className="text-acc-blue" size={16} />
-                    </div>
-                    <span className="text-acc-blue font-black text-sm tracking-widest">HITS TP VERIFIED</span>
-                  </div>
-                  <div className="text-2xl font-black font-mono">+$8,450.21</div>
-                  <div className="flex gap-1 mt-2">
-                    <div className="h-1 w-8 bg-acc-blue rounded-full" />
-                    <div className="h-1 w-4 bg-acc-blue/30 rounded-full" />
-                    <div className="h-1 w-12 bg-acc-blue/60 rounded-full" />
-                  </div>
-               </motion.div>
+               {/* Carousel Indicators */}
+               <div className="absolute bottom-6 flex gap-2 z-40">
+                 {HERO_IMAGES.map((_, i) => (
+                   <div 
+                     key={i} 
+                     className={`h-1 rounded-full transition-all duration-500 ${heroIndex === i ? 'w-8 bg-gold-500' : 'w-2 bg-white/30'}`}
+                   />
+                 ))}
+               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 md:py-24 relative z-20">
+      <section className="py-6 md:py-10 relative z-20">
         <div className="max-w-[1440px] mx-auto px-4">
           <motion.div 
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6"
+            className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6"
           >
             {STATS.map((stat) => (
               <motion.div
@@ -252,7 +355,7 @@ export default function Home() {
                    </div>
                 </div>
                 <div className="text-lg md:text-3xl font-black mb-0.5 text-gradient-gold">{stat.value}</div>
-                <div className="text-[7px] md:text-[9px] font-black text-white/30 tracking-[0.2em] uppercase italic">{stat.label}</div>
+                <div className="text-[7px] md:text-[9px] font-black text-white/30 tracking-[0.2em] uppercase">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -260,10 +363,10 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-6 md:py-32 px-4 relative bg-[#050505]">
+      <section className="py-6 md:py-10 relative bg-[#050505]">
         <div className="max-w-[1440px] mx-auto">
-          <div className="text-center mb-4 md:mb-20">
-            <h2 className="text-[11px] md:text-6xl font-black mb-1 md:mb-6 uppercase tracking-tight italic flex items-center justify-center gap-1.5 md:gap-4 text-center flex-wrap">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl md:text-6xl font-black mb-1 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-1.5 md:gap-4 text-center flex-wrap">
               <span className="text-white">WHAT IS</span> 
               <span className="text-gradient-gold">XAU VIP+</span>
               <span className="text-white">?</span>
@@ -303,13 +406,14 @@ export default function Home() {
       </section>
 
       {/* Client Reviews */}
-      <section className="py-16 md:py-40 px-4 bg-white/[0.02]">
+      <section className="py-6 md:py-12 px-4 bg-white/[0.02]">
         <div className="max-w-[1440px] mx-auto">
-          <div className="text-center mb-10 md:mb-24">
-            <h2 className="text-2xl md:text-7xl font-black mb-4 md:mb-8 uppercase tracking-tight italic flex items-center justify-center gap-2 md:gap-4 text-center flex-wrap">
-              <span className="text-white">⭐ CLIENT</span> <span className="text-gradient-gold uppercase">REVIEWS</span>
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl md:text-6xl font-black mb-1 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-1.5 md:gap-4 text-center flex-wrap">
+              <span className="text-white">CLIENT</span> 
+              <span className="text-gradient-gold uppercase">REVIEWS</span>
             </h2>
-            <div className="w-16 md:w-32 h-1 md:h-1.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto glow-gold" />
+            <div className="w-5 md:w-32 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto glow-gold" />
           </div>
 
           <ReviewSlider />
@@ -317,12 +421,12 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Blue Neon Theme */}
-      <section className="py-12 md:py-32 px-4 bg-black relative">
+      <section className="py-6 md:py-12 px-4 bg-black relative">
         <div className="max-w-[1280px] mx-auto">
           <div className="relative p-0.5 md:p-1 rounded-[20px] md:rounded-[40px] bg-gradient-to-r from-acc-blue/50 via-acc-blue/20 to-acc-blue/50 group">
             <div className="absolute inset-0 bg-acc-blue/20 blur-3xl group-hover:bg-acc-blue/30 transition-all duration-500 opacity-50" />
             
-            <div className="relative bg-black rounded-[18px] md:rounded-[36px] p-4 md:p-14 flex flex-col lg:flex-row items-center gap-6 md:gap-14 border border-acc-blue/30">
+            <div className="relative bg-black rounded-[18px] md:rounded-[36px] p-4 md:p-10 flex flex-col lg:flex-row items-center gap-6 md:gap-8 border border-acc-blue/30">
               {/* Left: Large Icon */}
               <div className="shrink-0 w-12 h-12 md:w-28 md:h-28 rounded-full border border-acc-blue/50 flex items-center justify-center bg-acc-blue/5 glow-blue">
                 <Send size={20} className="text-acc-blue fill-acc-blue/20 md:w-10 md:h-10" />
@@ -335,7 +439,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="text-lg md:text-5xl font-black mb-3 tracking-tighter italic uppercase leading-[0.9]"
+                  className="text-lg md:text-5xl font-black mb-3 tracking-tighter uppercase leading-[0.9]"
                 >
                   <span className="text-white">READY TO TAKE YOUR</span> <br className="hidden md:block" />
                   <span className="text-acc-blue">TRADING TO THE</span> <span className="text-gradient-gold">NEXT LEVEL?</span>
@@ -378,7 +482,7 @@ export default function Home() {
           <div className="mt-12 md:mt-16 text-center">
             <div className="flex items-center justify-center gap-4 md:gap-6 mb-8 md:mb-10 overflow-hidden">
                <div className="h-px bg-gradient-to-r from-transparent to-acc-blue/30 flex-1" />
-               <h3 className="text-acc-blue font-black tracking-[0.2em] uppercase text-[10px] md:text-lg italic">Additional Benefits</h3>
+               <h3 className="text-acc-blue font-black tracking-[0.2em] uppercase text-[10px] md:text-lg">Additional Benefits</h3>
                <div className="h-px bg-gradient-to-l from-transparent to-acc-blue/30 flex-1" />
             </div>
 

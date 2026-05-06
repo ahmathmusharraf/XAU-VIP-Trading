@@ -11,8 +11,6 @@ export default function Footer() {
           © {new Date().getFullYear()} All Rights Reserved.
         </p>
       </div>
-      {/* Spacer for mobile nav */}
-      <div className="h-24 md:hidden" />
     </footer>
   );
 }
