@@ -164,12 +164,12 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-16 md:pt-32 px-4">
+      <section className="relative min-h-[80vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-20 md:pt-32 px-4">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,#d4a01715_0%,transparent_60%)] pointer-events-none" />
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-acc-blue/10 blur-[120px] rounded-full pointer-events-none" />
         
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center relative z-10">
           <motion.div
             initial="hidden"
             animate="show"
@@ -186,7 +186,7 @@ export default function Home() {
             
             <motion.h1 
               variants={item}
-              className="text-4xl md:text-8xl font-black tracking-tight leading-[0.9] mb-4 md:mb-6"
+              className="text-[32px] md:text-8xl font-black tracking-tight leading-[0.9] mb-3 md:mb-6"
             >
               <motion.span
                 initial={{ y: "100%" }}
@@ -216,12 +216,12 @@ export default function Home() {
             
             <motion.p 
               variants={item}
-              className="text-xs md:text-xl text-gray-400 max-w-sm md:max-w-xl mx-auto lg:mx-0 mb-6 md:mb-10 leading-relaxed font-semibold"
+              className="text-xs md:text-xl text-gray-400 max-w-sm md:max-w-xl mx-auto lg:mx-0 mb-5 md:mb-10 leading-relaxed font-semibold px-4 md:px-0"
             >
               Get high accuracy gold signals, market insights, and account flipping challenges from $1K to $10K.
             </motion.p>
             
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-8 max-w-xs mx-auto lg:mx-0">
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-5 md:mb-8 max-w-xs mx-auto lg:mx-0 w-full">
               <motion.button
                 onClick={() => window.open(TELEGRAM_LINK, '_blank')}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(212, 160, 23, 0.4)" }}
@@ -234,7 +234,7 @@ export default function Home() {
             </motion.div>
             
             <motion.div variants={item} className="flex items-center justify-center lg:justify-start gap-2.5 md:gap-4 text-[10px] md:text-sm text-gray-500 font-bold tracking-tight uppercase">
-              <CheckCircle2 size={14} className="text-gold-500" /> Trusted by 7000+ traders
+              <CheckCircle2 size={14} className="text-gold-500" /> Trusted by 1k+ traders
             </motion.div>
           </motion.div>
 
@@ -242,14 +242,14 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative block order-first lg:order-last w-full"
+            className="relative block w-full"
           >
             {/* Background Chart Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-500/10 blur-[150px] rounded-full pointer-events-none" />
             
             {/* Animated Image Carousel */}
-            <div className="relative z-10 flex flex-col items-center mt-2 mb-10 lg:my-0">
-               <div className="relative w-full max-w-[550px] md:max-w-[1050px] h-[320px] md:h-[620px] rounded-[32px] md:rounded-[80px] overflow-hidden rotate-1 md:rotate-2 border border-gold-500/20 shadow-2xl glow-gold mx-auto">
+            <div className="relative z-10 flex flex-col items-center mt-6 mb-12 lg:my-0">
+               <div className="relative w-full max-w-[480px] md:max-w-[1050px] h-[280px] md:h-[620px] rounded-sm md:rounded-lg overflow-hidden border border-gold-500/20 shadow-2xl glow-gold mx-auto">
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={heroIndex}
@@ -268,14 +268,14 @@ export default function Home() {
                </div>
                             {/* Daily Scalps Badge */}
                 <motion.div 
-                 initial={{ opacity: 0, rotate: 10, y: 20 }}
-                 animate={{ opacity: 1, rotate: -3, y: 0 }}
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
                  transition={{ delay: 1, duration: 0.8 }}
                  whileHover={{ scale: 1.1, rotate: 0 }}
-                 className="absolute -top-1 -right-1 md:-top-12 md:-right-12 bg-black/80 backdrop-blur-xl border border-gold-500/50 p-2 md:p-5 rounded-[16px] md:rounded-[24px] glow-gold flex flex-col items-center text-center scale-[0.6] md:scale-110 z-30 shadow-[0_20px_40px_rgba(212,160,23,0.3)] group/badge overflow-hidden origin-center"
+                 className="absolute -top-1 -right-1 md:-top-12 md:-right-12 bg-black/80 backdrop-blur-xl border border-gold-500/50 p-2 md:p-5 rounded-sm md:rounded-md glow-gold flex flex-col items-center text-center scale-[0.6] md:scale-110 z-30 shadow-[0_20px_40px_rgba(212,160,23,0.3)] group/badge overflow-hidden origin-center"
                >
                   <div className="absolute inset-0 bg-gradient-to-br from-gold-500/10 to-transparent pointer-events-none" />
-                  <div className="w-5 h-5 md:w-8 md:h-8 rounded-full bg-gold-500/20 flex items-center justify-center mb-0.5 md:mb-2 border border-gold-500/30">
+                  <div className="w-5 h-5 md:w-8 md:h-8 rounded-none bg-gold-500/20 flex items-center justify-center mb-0.5 md:mb-2 border border-gold-500/30">
                      <Zap size={10} className="text-gold-500 md:w-4 md:h-4 group-hover/badge:animate-pulse" />
                   </div>
                   <span className="text-gray-400 text-[6px] md:text-[9px] font-black tracking-widest uppercase">Expert Daily</span>
@@ -294,11 +294,11 @@ export default function Home() {
 
                 {/* Growth Card */}
                 <motion.div 
-                 initial={{ opacity: 0, x: -20, rotate: 5 }}
-                 animate={{ opacity: 1, x: 0, rotate: -5 }}
+                 initial={{ opacity: 0, x: -20 }}
+                 animate={{ opacity: 1, x: 0 }}
                  transition={{ delay: 1.2, duration: 0.8 }}
-                 whileHover={{ scale: 1.05, rotate: -2 }}
-                 className="absolute -bottom-1 -left-1 md:-bottom-10 md:-left-10 bg-black/60 backdrop-blur-[20px] p-2 md:p-7 rounded-[20px] md:rounded-[32px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group/card z-20 overflow-hidden scale-[0.6] md:scale-100 origin-center"
+                 whileHover={{ scale: 1.05, rotate: 0 }}
+                 className="absolute -bottom-1 -left-1 md:-bottom-12 md:-left-12 bg-black/60 backdrop-blur-[20px] p-2 md:p-7 rounded-sm md:rounded-md border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group/card z-20 overflow-hidden scale-[0.6] md:scale-100 origin-center"
                >
                   {/* Internal Glow */}
                   <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-acc-blue/10 blur-[30px] md:blur-[40px] rounded-full -mr-10 -mt-10 md:-mr-16 md:-mt-16 pointer-events-none" />
