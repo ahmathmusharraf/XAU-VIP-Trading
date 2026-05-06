@@ -234,7 +234,7 @@ export default function Home() {
             </motion.div>
             
             <motion.div variants={item} className="flex items-center justify-center lg:justify-start gap-2.5 md:gap-4 text-[10px] md:text-sm text-gray-500 font-bold tracking-tight uppercase">
-              <CheckCircle2 size={14} className="text-gold-500" /> Trusted by 1k+ traders
+              <CheckCircle2 size={14} className="text-gold-500" /> Trusted by 7000+ traders
             </motion.div>
           </motion.div>
 
