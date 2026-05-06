@@ -51,7 +51,7 @@ export const FEATURES: Feature[] = [
 ];
 
 export const STATS = [
-  { label: "HAPPY TRADERS", value: "1000+", icon: Users },
+  { label: "HAPPY TRADERS", value: "7000+", icon: Users },
   { label: "ACCURACY RATE", value: "85%+", icon: Award },
   { label: "DAILY SIGNALS", value: "5-6", icon: TrendingUp },
   { label: "CHALLENGES", value: "$1K TO $10K+", icon: CreditCard }
