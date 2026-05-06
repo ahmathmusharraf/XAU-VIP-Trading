@@ -134,8 +134,8 @@ export default function Home() {
   const [heroIndex, setHeroIndex] = React.useState(0);
   const HERO_IMAGES = [
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/1.jpg",
-    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/2.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/3.jpg",
+    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/2.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/4.jpg"
   ];
 
@@ -188,9 +188,30 @@ export default function Home() {
               variants={item}
               className="text-4xl md:text-8xl font-black tracking-tight leading-[0.9] mb-4 md:mb-6"
             >
-              XAU VIP<span className="text-gold-500">+</span><br />
-              <span className="text-gradient-gold">GOLD TRADING</span><br />
-              <span className="text-white">SIGNALS</span>
+              <motion.span
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.8, ease: "circOut" }}
+                className="inline-block overflow-hidden pb-1"
+              >
+                XAU VIP<span className="text-gold-500">+</span>
+              </motion.span><br />
+              <motion.span
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: "circOut" }}
+                className="inline-block overflow-hidden pb-1 text-gradient-gold"
+              >
+                GOLD TRADING
+              </motion.span><br />
+              <motion.span
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: "circOut" }}
+                className="inline-block overflow-hidden pb-1 text-white"
+              >
+                SIGNALS
+              </motion.span>
             </motion.h1>
             
             <motion.p 
@@ -342,19 +363,35 @@ export default function Home() {
             viewport={{ once: true }}
             className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6"
           >
-            {STATS.map((stat) => (
+            {STATS.map((stat, idx) => (
               <motion.div
                 key={stat.label}
-                variants={item}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
                 className="p-3.5 md:p-6 rounded-[20px] md:rounded-[32px] bg-white/[0.03] border border-white/5 text-center group transition-all"
               >
                 <div className="mb-2.5 md:mb-4 flex justify-center">
-                   <div className="w-7 h-7 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-black transition-all">
+                   <motion.div 
+                      key={idx}
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 200, delay: idx * 0.1 + 0.2 }}
+                      className="w-7 h-7 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-gold-500/10 flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-black transition-all"
+                   >
                       <stat.icon size={14} />
-                   </div>
+                   </motion.div>
                 </div>
-                <div className="text-lg md:text-3xl font-black mb-0.5 text-gradient-gold">{stat.value}</div>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: idx * 0.1 + 0.3 }}
+                  className="text-lg md:text-3xl font-black mb-0.5 text-gradient-gold"
+                >
+                  {stat.value}
+                </motion.div>
                 <div className="text-[7px] md:text-[9px] font-black text-white/30 tracking-[0.2em] uppercase">{stat.label}</div>
               </motion.div>
             ))}
@@ -367,9 +404,30 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-8 md:mb-10">
             <h2 className="text-2xl md:text-6xl font-black mb-1 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-1.5 md:gap-4 text-center flex-wrap">
-              <span className="text-white">WHAT IS</span> 
-              <span className="text-gradient-gold">XAU VIP+</span>
-              <span className="text-white">?</span>
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-white"
+              >
+                WHAT IS
+              </motion.span> 
+              <motion.span 
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-gradient-gold"
+              >
+                XAU VIP+
+              </motion.span>
+              <motion.span 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="text-white"
+              >
+                ?
+              </motion.span>
             </h2>
             <div className="w-5 md:w-32 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto glow-gold" />
           </div>
@@ -392,9 +450,18 @@ export default function Home() {
                 }}
                 className="p-2 md:p-8 rounded-[10px] md:rounded-[40px] bg-white/5 border border-white/10 flex flex-col items-center text-center group hover:bg-gold-500/5 hover:border-gold-500/30 transition-all duration-500"
               >
-                <div className="mb-1.5 md:mb-6 w-5 h-5 md:w-14 md:h-14 rounded-sm md:rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-500 scale-110 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[inset_0_0_20px_rgba(238,176,26,0.1)]">
+                <motion.div 
+                  initial={{ y: 0 }}
+                  whileInView={{ y: [0, -5, 0] }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="mb-1.5 md:mb-6 w-5 h-5 md:w-14 md:h-14 rounded-sm md:rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-500 scale-110 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[inset_0_0_20px_rgba(238,176,26,0.1)]"
+                >
                   <feature.icon size={10} className="md:w-6 md:h-6" />
-                </div>
+                </motion.div>
                 <h3 className="text-[7.5px] md:text-lg font-black mb-0.5 md:mb-3 h-3 md:h-12 flex items-center tracking-tight text-white leading-none uppercase text-center">{feature.title}</h3>
                 <p className="text-gray-500 text-[6.5px] md:text-sm font-medium leading-[1.1] md:leading-relaxed group-hover:text-gray-300 transition-colors px-0.5">
                   {feature.description}
@@ -410,8 +477,22 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-8 md:mb-10">
             <h2 className="text-2xl md:text-6xl font-black mb-1 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-1.5 md:gap-4 text-center flex-wrap">
-              <span className="text-white">CLIENT</span> 
-              <span className="text-gradient-gold uppercase">REVIEWS</span>
+              <motion.span 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-white"
+              >
+                CLIENT
+              </motion.span> 
+              <motion.span 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-gradient-gold uppercase"
+              >
+                REVIEWS
+              </motion.span>
             </h2>
             <div className="w-5 md:w-32 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto glow-gold" />
           </div>
