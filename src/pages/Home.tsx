@@ -15,8 +15,8 @@ const REVIEWS_DATA = [
 ];
 
 function ReviewSlider() {
-  const row1 = [...REVIEWS_DATA.slice(0, 4), ...REVIEWS_DATA.slice(0, 4)];
-  const row2 = [...REVIEWS_DATA.slice(4, 8), ...REVIEWS_DATA.slice(4, 8)];
+  const row1 = [...REVIEWS_DATA.slice(0, 4), ...REVIEWS_DATA.slice(0, 4), ...REVIEWS_DATA.slice(0, 4)];
+  const row2 = [...REVIEWS_DATA.slice(4, 8), ...REVIEWS_DATA.slice(4, 8), ...REVIEWS_DATA.slice(4, 8)];
 
   return (
     <div className="relative overflow-hidden py-10 md:py-20 -mx-4 px-4">
@@ -28,9 +28,9 @@ function ReviewSlider() {
         {/* Row 1: Left to Right */}
         <div className="flex overflow-hidden group">
           <motion.div 
-            animate={{ x: [0, -1000] }}
+            animate={{ x: [0, -2000] }}
             transition={{ 
-              duration: 30, 
+              duration: 40, 
               repeat: Infinity, 
               ease: "linear",
             }}
@@ -45,9 +45,9 @@ function ReviewSlider() {
         {/* Row 2: Right to Left */}
         <div className="flex overflow-hidden group">
           <motion.div 
-            animate={{ x: [-1000, 0] }}
+            animate={{ x: [-2000, 0] }}
             transition={{ 
-              duration: 35, 
+              duration: 50, 
               repeat: Infinity, 
               ease: "linear",
             }}
@@ -164,12 +164,12 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-20 md:pt-32 px-4">
+      <section className="relative min-h-[80vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-20 md:pt-32 lg:pt-40 px-4">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,#d4a01715_0%,transparent_60%)] pointer-events-none" />
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-acc-blue/10 blur-[120px] rounded-full pointer-events-none" />
         
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 items-center relative z-10">
+        <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16 xl:gap-24 items-center relative z-10 w-full">
           <motion.div
             initial="hidden"
             animate="show"
@@ -186,7 +186,7 @@ export default function Home() {
             
             <motion.h1 
               variants={item}
-              className="text-[32px] md:text-8xl font-black tracking-tight leading-[0.9] mb-3 md:mb-6"
+              className="text-[32px] sm:text-5xl md:text-7xl lg:text-8xl 2xl:text-9xl font-black tracking-tight leading-[0.9] mb-3 md:mb-6"
             >
               <motion.span
                 initial={{ y: "100%" }}
@@ -216,20 +216,20 @@ export default function Home() {
             
             <motion.p 
               variants={item}
-              className="text-xs md:text-xl text-gray-400 max-w-sm md:max-w-xl mx-auto lg:mx-0 mb-5 md:mb-10 leading-relaxed font-semibold px-4 md:px-0"
+              className="text-xs sm:text-sm md:text-xl lg:text-2xl text-gray-400 max-w-sm md:max-w-xl 2xl:max-w-2xl mx-auto lg:mx-0 mb-5 md:mb-10 leading-relaxed font-semibold px-4 md:px-0"
             >
               Get high accuracy gold signals, market insights, and account flipping challenges from $1K to $10K.
             </motion.p>
             
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-5 md:mb-8 max-w-xs mx-auto lg:mx-0 w-full">
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-5 md:mb-8 max-w-xs sm:max-w-md lg:mx-0 w-full">
               <motion.button
                 onClick={() => window.open(TELEGRAM_LINK, '_blank')}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(212, 160, 23, 0.4)" }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-gold-500 text-black px-6 md:px-12 py-3.5 md:py-5 rounded-xl md:rounded-2xl font-black text-sm md:text-xl flex items-center justify-center gap-2 group glow-gold border-2 border-gold-400"
+                className="bg-gold-500 text-black px-6 md:px-12 py-3.5 md:py-5 lg:py-6 rounded-xl md:rounded-2xl font-black text-sm md:text-xl lg:text-2xl flex items-center justify-center gap-2 group glow-gold border-2 border-gold-400 w-full"
               >
                 JOIN TELEGRAM 
-                <Send className="group-hover:translate-x-1 transition-transform fill-black" size={16} />
+                <Send className="group-hover:translate-x-1 transition-transform fill-black" size={20} />
               </motion.button>
             </motion.div>
             
@@ -245,11 +245,11 @@ export default function Home() {
             className="relative block w-full"
           >
             {/* Background Chart Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-500/10 blur-[150px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gold-500/10 blur-[80px] md:blur-[150px] rounded-full pointer-events-none" />
             
             {/* Animated Image Carousel */}
-            <div className="relative z-10 flex flex-col items-center mt-6 mb-12 lg:my-0">
-               <div className="relative w-full max-w-[480px] md:max-w-[1050px] h-[280px] md:h-[620px] rounded-sm md:rounded-lg overflow-hidden border border-gold-500/20 shadow-2xl glow-gold mx-auto">
+            <div className="relative z-10 flex flex-col items-center mt-6 mb-12 lg:my-0 lg:ml-auto w-full max-w-[1050px]">
+               <div className="relative w-full h-[280px] md:h-[500px] lg:h-[620px] xl:h-[750px] rounded-sm md:rounded-lg overflow-hidden border border-gold-500/20 shadow-2xl glow-gold mx-auto">
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={heroIndex}
@@ -354,14 +354,14 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-6 md:py-10 relative z-20">
-        <div className="max-w-[1440px] mx-auto px-4">
+      <section className="py-6 md:py-16 relative z-20">
+        <div className="max-w-[1600px] mx-auto px-4">
           <motion.div 
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8 lg:gap-10"
           >
             {STATS.map((stat, idx) => (
               <motion.div
@@ -400,10 +400,10 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-6 md:py-10 relative bg-[#050505]">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="text-center mb-8 md:mb-10">
-            <h2 className="text-2xl md:text-6xl font-black mb-1 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-1.5 md:gap-4 text-center flex-wrap">
+      <section className="py-10 md:py-24 relative bg-[#050505]">
+        <div className="max-w-[1600px] mx-auto px-4">
+          <div className="text-center mb-10 md:mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-3 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-2 md:gap-6 text-center flex-nowrap md:flex-wrap">
               <motion.span 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -437,7 +437,7 @@ export default function Home() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-1.5 md:gap-6"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-10"
           >
             {FEATURES.map((feature) => (
               <motion.div
@@ -473,10 +473,10 @@ export default function Home() {
       </section>
 
       {/* Client Reviews */}
-      <section className="py-6 md:py-12 px-4 bg-white/[0.02]">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="text-center mb-8 md:mb-10">
-            <h2 className="text-2xl md:text-6xl font-black mb-1 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-1.5 md:gap-4 text-center flex-wrap">
+      <section className="py-12 md:py-24 px-4 bg-white/[0.02]">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-3 md:mb-6 uppercase tracking-tight flex items-center justify-center gap-2 md:gap-6 text-center flex-nowrap md:flex-wrap">
               <motion.span 
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -502,15 +502,15 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Blue Neon Theme */}
-      <section className="py-6 md:py-12 px-4 bg-black relative">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="relative p-0.5 md:p-1 rounded-[20px] md:rounded-[40px] bg-gradient-to-r from-acc-blue/50 via-acc-blue/20 to-acc-blue/50 group">
+      <section className="py-12 md:py-24 px-4 bg-black relative">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="relative p-0.5 md:p-1 rounded-[20px] md:rounded-[50px] bg-gradient-to-r from-acc-blue/50 via-acc-blue/20 to-acc-blue/50 group">
             <div className="absolute inset-0 bg-acc-blue/20 blur-3xl group-hover:bg-acc-blue/30 transition-all duration-500 opacity-50" />
             
-            <div className="relative bg-black rounded-[18px] md:rounded-[36px] p-4 md:p-10 flex flex-col lg:flex-row items-center gap-6 md:gap-8 border border-acc-blue/30">
+            <div className="relative bg-black rounded-[18px] md:rounded-[48px] p-6 md:p-16 flex flex-col lg:flex-row items-center gap-8 md:gap-12 border border-acc-blue/30">
               {/* Left: Large Icon */}
-              <div className="shrink-0 w-12 h-12 md:w-28 md:h-28 rounded-full border border-acc-blue/50 flex items-center justify-center bg-acc-blue/5 glow-blue">
-                <Send size={20} className="text-acc-blue fill-acc-blue/20 md:w-10 md:h-10" />
+              <div className="shrink-0 w-16 h-16 md:w-32 md:h-32 rounded-full border border-acc-blue/50 flex items-center justify-center bg-acc-blue/5 glow-blue">
+                <Send size={24} className="text-acc-blue fill-acc-blue/20 md:w-12 md:h-12" />
               </div>
 
               {/* Center: Text Content */}
@@ -520,7 +520,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="text-lg md:text-5xl font-black mb-3 tracking-tighter uppercase leading-[0.9]"
+                  className="text-2xl md:text-5xl lg:text-6xl 2xl:text-7xl font-black mb-4 tracking-tighter uppercase leading-[0.9]"
                 >
                   <span className="text-white">READY TO TAKE YOUR</span> <br className="hidden md:block" />
                   <span className="text-acc-blue">TRADING TO THE</span> <span className="text-gradient-gold">NEXT LEVEL?</span>
@@ -530,7 +530,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                   viewport={{ once: true }}
-                  className="text-gray-400 text-[10px] md:text-lg font-bold max-w-xl mx-auto lg:mx-0 uppercase tracking-wide opacity-80"
+                  className="text-gray-400 text-xs md:text-lg lg:text-xl font-bold max-w-xl mx-auto lg:mx-0 uppercase tracking-wide opacity-80"
                 >
                   Join XAU VIP+ now and start your journey towards consistent profits.
                 </motion.p>
@@ -545,9 +545,9 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   viewport={{ once: true }}
                   whileTap={{ opacity: 0.8 }}
-                  className="w-full lg:w-auto bg-acc-blue text-black px-6 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-base md:text-xl flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(14,165,233,0.4)] hover:shadow-[0_0_60px_rgba(14,165,233,0.7)] transition-all duration-300"
+                  className="w-full lg:w-auto bg-acc-blue text-black px-8 md:px-12 py-4 md:py-6 rounded-xl md:rounded-2xl font-black text-lg md:text-xl lg:text-2xl flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(14,165,233,0.4)] hover:shadow-[0_0_60px_rgba(14,165,233,0.7)] transition-all duration-300"
                 >
-                  <Send size={20} className="fill-black" /> JOIN TELEGRAM
+                  <Send size={24} className="fill-black" /> JOIN TELEGRAM
                 </motion.button>
                 
                 <div className="flex items-center gap-4 md:gap-6 text-[8px] md:text-xs font-bold tracking-widest text-gray-400 uppercase">
