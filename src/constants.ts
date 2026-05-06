@@ -52,9 +52,9 @@ export const FEATURES: Feature[] = [
 
 export const STATS = [
   { label: "HAPPY TRADERS", value: "7000+", icon: Users },
-  { label: "ACCURACY RATE", value: "85%+", icon: Award },
+  { label: "ACCURACY RATE", value: "95%+", icon: Award },
   { label: "DAILY SIGNALS", value: "5-6", icon: TrendingUp },
-  { label: "CHALLENGES", value: "$1K TO $10K+", icon: CreditCard }
+  { label: "CHALLENGES WEEKLY", value: "$1K TO $10K+", icon: CreditCard }
 ];
 
 export const TELEGRAM_LINK = "https://t.me/+OnwxXx1j595kYzVk";
