@@ -6,7 +6,7 @@ import { TELEGRAM_LINK } from '../constants';
 export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
         <div className="flex-1 md:flex-none flex justify-center md:justify-start">
           <motion.div 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
