@@ -133,10 +133,10 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
 export default function Home() {
   const [heroIndex, setHeroIndex] = React.useState(0);
   const HERO_IMAGES = [
-    "https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2069&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1621285853634-713b8dd6b5ee?q=80&w=1974&auto=format&fit=crop"
+    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/1.jpg",
+    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/2.jpg",
+    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/3.jpg",
+    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/4.jpg"
   ];
 
   React.useEffect(() => {
