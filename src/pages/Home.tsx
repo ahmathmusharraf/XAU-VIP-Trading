@@ -221,7 +221,7 @@ export default function Home() {
               Get high accuracy gold signals, market insights, and account flipping challenges from $1K to $10K.
             </motion.p>
             
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-5 md:mb-8 max-w-xs sm:max-w-md lg:mx-0 w-full">
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-5 md:mb-8 max-w-xs sm:max-w-md mx-auto lg:mx-0 w-full">
               <motion.button
                 onClick={() => window.open(TELEGRAM_LINK, '_blank')}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(212, 160, 23, 0.4)" }}
