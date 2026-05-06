@@ -132,6 +132,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
 
 export default function Home() {
   const [heroIndex, setHeroIndex] = React.useState(0);
+  const [liveAmount, setLiveAmount] = React.useState(8450.21);
   const HERO_IMAGES = [
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/1.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/3.jpg",
@@ -143,7 +144,18 @@ export default function Home() {
     const timer = setInterval(() => {
       setHeroIndex((prev) => (prev + 1) % HERO_IMAGES.length);
     }, 5000);
-    return () => clearInterval(timer);
+
+    const profitTimer = setInterval(() => {
+      setLiveAmount(prev => {
+        const change = (Math.random() * 5 + 0.5) * (Math.random() > 0.3 ? 1 : -0.2);
+        return parseFloat((prev + change).toFixed(2));
+      });
+    }, 3000);
+
+    return () => {
+      clearInterval(timer);
+      clearInterval(profitTimer);
+    };
   }, []);
 
   const container = {
@@ -164,7 +176,7 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-20 md:pt-32 lg:pt-40 px-4">
+      <section className="relative min-h-[80vh] md:min-h-[90vh] flex flex-col items-center justify-center pt-28 md:pt-32 lg:pt-40 px-4">
         {/* Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_40%,#d4a01715_0%,transparent_60%)] pointer-events-none" />
         <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-acc-blue/10 blur-[120px] rounded-full pointer-events-none" />
@@ -178,7 +190,7 @@ export default function Home() {
           >
             <motion.div 
               variants={item}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/5 text-gold-400 text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-6 md:mb-8"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/5 text-gold-400 text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-12 md:mb-8"
             >
               <TrendingUp size={12} />
               Accurate • Consistent • Profitable
@@ -266,39 +278,14 @@ export default function Home() {
                   {/* Subtle overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                </div>
-                            {/* Daily Scalps Badge */}
-                <motion.div 
-                 initial={{ opacity: 0, y: 20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ delay: 1, duration: 0.8 }}
-                 whileHover={{ scale: 1.1, rotate: 0 }}
-                 className="absolute -top-1 -right-1 md:-top-12 md:-right-12 bg-black/80 backdrop-blur-xl border border-gold-500/50 p-2 md:p-5 rounded-sm md:rounded-md glow-gold flex flex-col items-center text-center scale-[0.6] md:scale-110 z-30 shadow-[0_20px_40px_rgba(212,160,23,0.3)] group/badge overflow-hidden origin-center"
-               >
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-500/10 to-transparent pointer-events-none" />
-                  <div className="w-5 h-5 md:w-8 md:h-8 rounded-none bg-gold-500/20 flex items-center justify-center mb-0.5 md:mb-2 border border-gold-500/30">
-                     <Zap size={10} className="text-gold-500 md:w-4 md:h-4 group-hover/badge:animate-pulse" />
-                  </div>
-                  <span className="text-gray-400 text-[6px] md:text-[9px] font-black tracking-widest uppercase">Expert Daily</span>
-                  <div className="flex items-baseline gap-0.5 md:gap-1">
-                    <span className="text-lg md:text-4xl font-black text-white">5-6</span>
-                    <span className="text-gold-500 text-[8px] md:text-xs font-black">+</span>
-                  </div>
-                  <span className="text-gold-500 text-[7px] md:text-[10px] font-black tracking-tighter uppercase mb-0.5 md:mb-2 text-nowrap">High-Win Scalps</span>
-                  
-                  <div className="flex gap-0.5">
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} size={4} className="fill-gold-500 text-gold-500 md:w-2 md:h-2" />
-                    ))}
-                  </div>
-                </motion.div>
 
                 {/* Growth Card */}
                 <motion.div 
-                 initial={{ opacity: 0, x: -20 }}
-                 animate={{ opacity: 1, x: 0 }}
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
                  transition={{ delay: 1.2, duration: 0.8 }}
                  whileHover={{ scale: 1.05, rotate: 0 }}
-                 className="absolute -bottom-1 -left-1 md:-bottom-12 md:-left-12 bg-black/60 backdrop-blur-[20px] p-2 md:p-7 rounded-sm md:rounded-md border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group/card z-20 overflow-hidden scale-[0.6] md:scale-100 origin-center"
+                 className="absolute -bottom-10 md:-bottom-20 left-1/2 -translate-x-1/2 bg-black/90 backdrop-blur-[20px] p-2 md:p-7 rounded-sm md:rounded-md border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group/card z-30 overflow-hidden scale-[0.75] md:scale-110 origin-center w-max"
                >
                   {/* Internal Glow */}
                   <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-acc-blue/10 blur-[30px] md:blur-[40px] rounded-full -mr-10 -mt-10 md:-mr-16 md:-mt-16 pointer-events-none" />
@@ -322,9 +309,14 @@ export default function Home() {
                   </div>
 
                   <div className="relative z-10">
-                    <div className="text-base md:text-4xl font-black font-mono tracking-tighter text-white mb-0 md:mb-1">
-                      +$8,450<span className="text-acc-blue">.21</span>
-                    </div>
+                    <motion.div 
+                      key={liveAmount}
+                      initial={{ opacity: 0.8, filter: "brightness(2)" }}
+                      animate={{ opacity: 1, filter: "brightness(1)" }}
+                      className="text-base md:text-4xl font-black font-mono tracking-tighter text-white mb-0 md:mb-1"
+                    >
+                      +${Math.floor(liveAmount).toLocaleString()}<span className="text-acc-blue">.{(liveAmount % 1).toFixed(2).split('.')[1]}</span>
+                    </motion.div>
                     <div className="flex items-center gap-1 md:gap-2">
                        <div className="flex gap-0.5">
                          <div className="h-0.5 md:h-1 w-3 md:w-6 bg-acc-blue rounded-full group-hover/card:w-8 transition-all duration-500" />
@@ -340,11 +332,12 @@ export default function Home() {
                </motion.div>
 
                {/* Carousel Indicators */}
-               <div className="absolute bottom-6 flex gap-2 z-40">
+               <div className="absolute top-4 right-4 flex gap-1.5 z-40 bg-black/40 backdrop-blur-md p-2 rounded-full border border-white/10">
                  {HERO_IMAGES.map((_, i) => (
-                   <div 
+                   <button 
                      key={i} 
-                     className={`h-1 rounded-full transition-all duration-500 ${heroIndex === i ? 'w-8 bg-gold-500' : 'w-2 bg-white/30'}`}
+                     onClick={() => setHeroIndex(i)}
+                     className={`h-1.5 rounded-full transition-all duration-500 ${heroIndex === i ? 'w-6 bg-gold-500' : 'w-2 bg-white/20 hover:bg-white/40'}`}
                    />
                  ))}
                </div>
