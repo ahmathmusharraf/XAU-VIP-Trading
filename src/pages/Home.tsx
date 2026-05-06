@@ -261,22 +261,31 @@ export default function Home() {
             
             {/* Animated Image Carousel */}
             <div className="relative z-10 flex flex-col items-center mt-6 mb-12 lg:my-0 lg:ml-auto w-full max-w-[1050px]">
-               <div className="relative w-full h-[280px] md:h-[500px] lg:h-[620px] xl:h-[750px] rounded-sm md:rounded-lg overflow-hidden border border-gold-500/20 shadow-2xl glow-gold mx-auto">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={heroIndex}
-                      src={HERO_IMAGES[heroIndex]}
-                      initial={{ opacity: 0, scale: 1.1 }}
-                      animate={{ opacity: 1, scale: 1.05 }}
-                      exit={{ opacity: 0, scale: 1.15 }}
-                      transition={{ duration: 1.5, ease: "easeInOut" }}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      alt="Gold Trading"
-                      referrerPolicy="no-referrer"
-                    />
-                  </AnimatePresence>
-                  {/* Subtle overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+               <div className="relative w-full h-[280px] md:h-[500px] lg:h-[620px] xl:h-[750px] rounded-sm md:rounded-lg p-[1px] md:p-[2px] overflow-hidden bg-gold-900/50 shadow-2xl glow-gold mx-auto">
+                  {/* Moving Gold Line Animation */}
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_160deg,rgba(212,160,23,0.8)_180deg,transparent_200deg,transparent_360deg)] pointer-events-none z-0"
+                  />
+                  
+                  <div className="relative w-full h-full rounded-[1px] md:rounded-[4px] overflow-hidden bg-black z-10">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={heroIndex}
+                        src={HERO_IMAGES[heroIndex]}
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{ opacity: 1, scale: 1.05 }}
+                        exit={{ opacity: 0, scale: 1.15 }}
+                        transition={{ duration: 1.5, ease: "easeInOut" }}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        alt="Gold Trading"
+                        referrerPolicy="no-referrer"
+                      />
+                    </AnimatePresence>
+                    {/* Subtle overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  </div>
                </div>
 
                 {/* Growth Card */}
