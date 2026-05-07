@@ -627,6 +627,24 @@ export default function Home() {
 
               {/* Right: Button & Badges */}
               <div className="flex flex-col items-center gap-3 md:gap-5 w-full lg:w-auto">
+                {/* 1080x1080 CTA Image Container */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="w-40 h-40 md:w-64 md:h-64 lg:w-[320px] lg:h-[320px] rounded-2xl md:rounded-[40px] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative mb-2 md:mb-6 group/img"
+                >
+                   <img 
+                      src="https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=1080&auto=format&fit=crop" 
+                      className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-1000"
+                      alt="Gold Success"
+                      referrerPolicy="no-referrer"
+                   />
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                   <div className="absolute inset-0 border-[0.5px] border-white/20 rounded-2xl md:rounded-[40px] pointer-events-none" />
+                </motion.div>
+
                 <motion.button 
                   onClick={() => window.open(TELEGRAM_LINK, '_blank')}
                   initial={{ opacity: 0 }}
