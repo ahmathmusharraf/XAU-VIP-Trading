@@ -554,12 +554,12 @@ export default function Home() {
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className="mb-3 md:mb-6 w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-500 scale-110 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[inset_0_0_20px_rgba(238,176,26,0.1)]"
+                  className="mb-3 md:mb-6 w-10 h-10 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-xl md:rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-500 scale-110 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[inset_0_0_20px_rgba(238,176,26,0.1)]"
                 >
-                  <feature.icon size={20} className="md:w-6 md:h-6" />
+                  <feature.icon size={20} className="md:w-8 md:h-8 lg:w-10 lg:h-10" />
                 </motion.div>
-                <h3 className="text-xs md:text-lg font-black mb-2 md:mb-3 h-8 md:h-12 flex items-center tracking-tight text-white leading-tight uppercase text-center">{feature.title}</h3>
-                <p className="text-gray-500 text-[10px] md:text-sm font-medium leading-relaxed group-hover:text-gray-300 transition-colors px-1">
+                <h3 className="text-xs md:text-xl lg:text-2xl font-black mb-2 md:mb-4 h-8 md:h-14 lg:h-16 flex items-center tracking-tight text-white leading-tight uppercase text-center">{feature.title}</h3>
+                <p className="text-gray-500 text-[10px] md:text-base lg:text-lg font-medium leading-relaxed group-hover:text-gray-300 transition-colors px-1">
                   {feature.description}
                 </p>
               </motion.div>
