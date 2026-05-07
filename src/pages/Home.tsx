@@ -599,10 +599,26 @@ export default function Home() {
             <div className="absolute inset-0 bg-acc-blue/20 blur-3xl group-hover:bg-acc-blue/30 transition-all duration-500 opacity-50" />
             
             <div className="relative bg-black rounded-[18px] md:rounded-[48px] p-6 md:p-16 flex flex-col lg:flex-row items-center gap-8 md:gap-12 border border-acc-blue/30">
-              {/* Left: Large Icon */}
-              <div className="shrink-0 w-16 h-16 md:w-32 md:h-32 rounded-full border border-acc-blue/50 flex items-center justify-center bg-acc-blue/5 glow-blue">
-                <Send size={24} className="text-acc-blue fill-acc-blue/20 md:w-12 md:h-12" />
-              </div>
+              {/* Left: Gold Success Image */}
+              <motion.a
+                href={TELEGRAM_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="shrink-0 w-28 h-28 md:w-40 md:h-40 lg:w-56 lg:h-56 rounded-xl overflow-hidden border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.5)] relative group/img block"
+              >
+                 <img 
+                    src="https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/teleimg.PNG" 
+                    className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-1000"
+                    alt="Gold Success"
+                    referrerPolicy="no-referrer"
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                 <div className="absolute inset-0 border-[0.5px] border-white/20 rounded-xl pointer-events-none" />
+              </motion.a>
 
               {/* Center: Text Content */}
               <div className="flex-1 text-center lg:text-left">
@@ -629,26 +645,6 @@ export default function Home() {
 
               {/* Right: Button & Badges */}
               <div className="flex flex-col items-center gap-3 md:gap-5 w-full lg:w-auto">
-                {/* 1080x1080 CTA Image Container */}
-                <motion.a
-                  href={TELEGRAM_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="w-28 h-28 md:w-40 md:h-40 lg:w-56 lg:h-56 rounded-xl overflow-hidden border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.5)] relative mb-4 md:mb-6 group/img block"
-                >
-                   <img 
-                      src="https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/teleimg.PNG" 
-                      className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-1000"
-                      alt="Gold Success"
-                      referrerPolicy="no-referrer"
-                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                   <div className="absolute inset-0 border-[0.5px] border-white/20 rounded-xl pointer-events-none" />
-                </motion.a>
 
                 <motion.button 
                   onClick={() => window.open(TELEGRAM_LINK, '_blank')}
