@@ -598,7 +598,25 @@ export default function Home() {
                   whileTap={{ opacity: 0.8 }}
                   className="w-full lg:w-auto bg-acc-blue text-black px-8 md:px-12 py-4 md:py-6 rounded-xl md:rounded-2xl font-black text-lg md:text-xl lg:text-2xl flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(14,165,233,0.4)] hover:shadow-[0_0_60px_rgba(14,165,233,0.7)] transition-all duration-300"
                 >
-                  <Send size={24} className="fill-black" /> JOIN TELEGRAM
+                  <Send size={24} className="fill-black" />
+                   <span className="flex overflow-hidden">
+                    {"JOIN TELEGRAM".split("").map((char, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ y: 0 }}
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.05,
+                          ease: "easeInOut"
+                        }}
+                        className={char === " " ? "w-2 md:w-3" : ""}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
                 </motion.button>
                 
                 <div className="flex items-center gap-4 md:gap-6 text-[8px] md:text-xs font-bold tracking-widest text-gray-400 uppercase">
