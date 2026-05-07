@@ -407,7 +407,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-6 md:gap-16">
             {[
               { icon: Instagram, label: 'Instagram', link: 'https://www.instagram.com/xautrading.club', color: 'hover:text-pink-500' },
-              { icon: Facebook, label: 'Facebook', link: 'https://www.facebook.com/people/XAU-VIP-Signals/', color: 'hover:text-blue-500' },
+              { icon: Facebook, label: 'Facebook', link: 'https://www.facebook.com/people/XAU-VIP-Signals/61571500714876/', color: 'hover:text-blue-500' },
               { icon: Music, label: 'TikTok', link: 'https://www.tiktok.com/@xautrading.club', color: 'hover:text-cyan-400' }
             ].map((social, i) => (
               <motion.a
