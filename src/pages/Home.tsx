@@ -146,6 +146,7 @@ const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: 
 export default function Home() {
   const [heroIndex, setHeroIndex] = React.useState(0);
   const [liveAmounts, setLiveAmounts] = React.useState([8450.21, 12640.45, 5120.88]);
+  const [livePercentages, setLivePercentages] = React.useState([24.5, 31.2, 18.7]);
   const HERO_IMAGES = [
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/1.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/2.jpg",
@@ -167,6 +168,10 @@ export default function Home() {
       setLiveAmounts(prev => prev.map(val => {
         const change = (Math.random() * 8 + 1) * (Math.random() > 0.35 ? 1 : -0.2);
         return parseFloat((val + change).toFixed(2));
+      }));
+      setLivePercentages(prev => prev.map(val => {
+        const change = (Math.random() * 0.2 + 0.05) * (Math.random() > 0.4 ? 1 : -0.1);
+        return parseFloat((val + change).toFixed(1));
       }));
     }, 3000);
 
@@ -388,7 +393,7 @@ export default function Home() {
                             className={`h-full w-full bg-${display.color}`}
                           />
                        </div>
-                       <span className={`text-[7px] md:text-[9px] font-black text-${display.color}/80 tracking-widest`}>+24.5%</span>
+                       <span className={`text-[7px] md:text-[9px] font-black text-${display.color}/80 tracking-widest`}>+{livePercentages[idx]}%</span>
                     </div>
                   </div>
 
@@ -453,7 +458,7 @@ export default function Home() {
       {/* Social Media Row */}
       <section className="py-10 md:py-16 relative z-10 border-y border-white/5 bg-black/40">
         <div className="max-w-[1600px] mx-auto px-4 flex flex-col items-center gap-8 md:gap-12">
-          <div className="flex flex-wrap justify-center gap-6 md:gap-16">
+          <div className="flex sm:flex-wrap justify-between sm:justify-center gap-1 sm:gap-6 md:gap-16 w-full max-w-full lg:max-w-none">
             {[
               { icon: Send, label: 'Telegram', link: TELEGRAM_LINK, color: 'text-[#0088cc]', shadow: 'shadow-[#0088cc]/20' },
               { icon: Instagram, label: 'Instagram', link: 'https://www.instagram.com/xautrading.club', color: 'text-[#E4405F]', shadow: 'shadow-[#E4405F]/20' },
@@ -469,14 +474,14 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ scale: 1.1, y: -5 }}
-                className="flex flex-col items-center gap-3 group transition-all duration-300"
+                className="flex flex-col items-center gap-1.5 md:gap-3 group transition-all duration-300 flex-1 sm:flex-none"
               >
-                <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[20px] md:rounded-[28px] bg-white/[0.03] border border-white/5 flex items-center justify-center transition-all ${social.shadow} shadow-[0_10px_30px_-5px_rgba(0,0,0,0.3)] hover:bg-white/5 hover:border-white/20`}>
-                  <social.icon size={24} className={`md:w-8 md:h-8 transition-colors ${social.color}`} />
+                <div className={`w-10 h-10 min-[375px]:w-12 min-[375px]:h-12 md:w-20 md:h-20 rounded-[12px] min-[375px]:rounded-[16px] md:rounded-[28px] bg-white/[0.03] border border-white/5 flex items-center justify-center transition-all ${social.shadow} shadow-[0_10px_30px_-5px_rgba(0,0,0,0.3)] hover:bg-white/5 hover:border-white/20`}>
+                  <social.icon size={18} className={`md:w-8 md:h-8 transition-colors ${social.color}`} />
                 </div>
-                <span className="text-[10px] md:text-sm font-black tracking-[0.2em] uppercase text-gray-500 group-hover:text-white transition-colors flex items-center gap-1 md:gap-1.5">
+                <span className="text-[6px] min-[375px]:text-[8px] md:text-sm font-black tracking-tight sm:tracking-[0.2em] uppercase text-gray-500 group-hover:text-white transition-colors flex items-center justify-center gap-0.5 md:gap-1.5 w-full whitespace-nowrap">
                   {social.label}
-                  <CheckCircle2 className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 text-acc-blue flex-shrink-0" />
+                  <CheckCircle2 className="w-1.5 h-1.5 min-[375px]:w-2 min-[375px]:h-2 md:w-3.5 md:h-3.5 text-acc-blue flex-shrink-0" />
                 </span>
               </motion.a>
             ))}
@@ -549,12 +554,12 @@ export default function Home() {
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className="mb-1.5 md:mb-6 w-5 h-5 md:w-14 md:h-14 rounded-sm md:rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-500 scale-110 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[inset_0_0_20px_rgba(238,176,26,0.1)]"
+                  className="mb-3 md:mb-6 w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gold-500/10 flex items-center justify-center text-gold-500 scale-110 group-hover:bg-gold-500 group-hover:text-black transition-all duration-300 shadow-[inset_0_0_20px_rgba(238,176,26,0.1)]"
                 >
-                  <feature.icon size={10} className="md:w-6 md:h-6" />
+                  <feature.icon size={20} className="md:w-6 md:h-6" />
                 </motion.div>
-                <h3 className="text-[7.5px] md:text-lg font-black mb-0.5 md:mb-3 h-3 md:h-12 flex items-center tracking-tight text-white leading-none uppercase text-center">{feature.title}</h3>
-                <p className="text-gray-500 text-[6.5px] md:text-sm font-medium leading-[1.1] md:leading-relaxed group-hover:text-gray-300 transition-colors px-0.5">
+                <h3 className="text-xs md:text-lg font-black mb-2 md:mb-3 h-8 md:h-12 flex items-center tracking-tight text-white leading-tight uppercase text-center">{feature.title}</h3>
+                <p className="text-gray-500 text-[10px] md:text-sm font-medium leading-relaxed group-hover:text-gray-300 transition-colors px-1">
                   {feature.description}
                 </p>
               </motion.div>
