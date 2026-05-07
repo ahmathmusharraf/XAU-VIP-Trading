@@ -149,13 +149,13 @@ export default function Home() {
   const [livePercentages, setLivePercentages] = React.useState([24.5, 31.2, 18.7]);
   const HERO_IMAGES = [
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/1.jpg",
-    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/2.jpg",
+    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/8.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/3.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/4.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/5.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/6.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/7.jpg",
-    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/8.jpg",
+    "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/2.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/9.jpg"
   ];
 
