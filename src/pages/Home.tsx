@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { FEATURES, STATS, TELEGRAM_LINK } from '../constants';
-import { ArrowRight, CheckCircle2, TrendingUp, Zap, Star, Send, Headphones, LineChart, Settings, ShieldCheck, GraduationCap, Users as UsersIcon, Lock } from 'lucide-react';
+import { ArrowRight, CheckCircle2, TrendingUp, Zap, Star, Send, Headphones, LineChart, Settings, ShieldCheck, GraduationCap, Users as UsersIcon, Lock, Instagram, Facebook, Music } from 'lucide-react';
 import React from 'react';
 
 const REVIEWS_DATA = [
@@ -398,6 +398,44 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Social Media Row */}
+      <section className="py-10 md:py-16 relative z-10 border-y border-white/5 bg-black/40">
+        <div className="max-w-[1600px] mx-auto px-4 flex flex-col items-center gap-8 md:gap-12">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-16">
+            {[
+              { icon: Instagram, label: 'Instagram', link: '#', color: 'hover:text-pink-500' },
+              { icon: Facebook, label: 'Facebook', link: '#', color: 'hover:text-blue-500' },
+              { icon: Music, label: 'TikTok', link: '#', color: 'hover:text-cyan-400' }
+            ].map((social, i) => (
+              <motion.a
+                key={social.label}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.1, y: -5 }}
+                className={`flex flex-col items-center gap-3 group transition-all duration-300 ${social.color}`}
+              >
+                <div className="w-14 h-14 md:w-20 md:h-20 rounded-[20px] md:rounded-[28px] bg-white/[0.03] border border-white/5 flex items-center justify-center group-hover:border-current group-hover:bg-white/5 transition-all shadow-[0_0_0_0_transparent] group-hover:shadow-[0_10px_30px_-5px_currentColor] group-hover:shadow-current/20">
+                  <social.icon size={24} className="md:w-8 md:h-8" />
+                </div>
+                <span className="text-[10px] md:text-sm font-black tracking-[0.2em] uppercase text-gray-500 group-hover:text-white transition-colors">
+                  {social.label}
+                </span>
+              </motion.a>
+            ))}
+          </div>
+          
+          <div className="flex items-center gap-4 w-full max-w-lg">
+             <div className="h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent flex-1" />
+             <div className="text-[10px] md:text-xs font-bold text-gray-600 tracking-[0.3em] uppercase">Connect With Us</div>
+             <div className="h-px bg-gradient-to-l from-transparent via-gold-500/20 to-transparent flex-1" />
+          </div>
         </div>
       </section>
 
