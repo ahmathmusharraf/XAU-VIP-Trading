@@ -309,6 +309,18 @@ export default function Home() {
 
         {/* Live Results Bar - Triple Profit Grid */}
         <div className="w-full mt-8 md:mt-12 mb-4 md:mb-6 px-4 relative z-30">
+          <div className="max-w-[1400px] mx-auto mb-8 md:mb-12 text-center">
+             <motion.h2
+               initial={{ opacity: 0, scale: 0.9 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true }}
+               className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter"
+             >
+               LIVE <span className="text-gradient-gold">PROFITS</span>
+             </motion.h2>
+             <div className="h-1 w-24 bg-gold-500 mx-auto mt-4 rounded-full glow-gold opacity-50" />
+          </div>
+          
           <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { label: 'GOLD SCALP', tag: 'XAU/USD', color: 'acc-blue' },
