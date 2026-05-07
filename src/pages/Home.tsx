@@ -288,59 +288,7 @@ export default function Home() {
                   </div>
                </div>
 
-                {/* Growth Card */}
-                <motion.div 
-                 initial={{ opacity: 0, y: 20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ delay: 1.2, duration: 0.8 }}
-                 whileHover={{ scale: 1.05, rotate: 0 }}
-                 className="absolute -bottom-10 md:-bottom-20 left-1/2 -translate-x-1/2 bg-black/90 backdrop-blur-[20px] p-2 md:p-7 rounded-sm md:rounded-md border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] group/card z-30 overflow-hidden scale-[0.75] md:scale-110 origin-center w-max"
-               >
-                  {/* Internal Glow */}
-                  <div className="absolute top-0 right-0 w-20 md:w-32 h-20 md:h-32 bg-acc-blue/10 blur-[30px] md:blur-[40px] rounded-full -mr-10 -mt-10 md:-mr-16 md:-mt-16 pointer-events-none" />
-                  
-                  <div className="flex items-center justify-between mb-1 md:mb-4 relative z-10">
-                    <div className="flex items-center gap-1.5 md:gap-3">
-                      <div className="w-6 h-6 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-acc-blue/20 flex items-center justify-center border border-acc-blue/30 glow-blue">
-                        <TrendingUp className="text-acc-blue w-3 h-3 md:w-4 md:h-4 group-hover/card:scale-110 transition-transform" size={12} />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1.5 md:gap-2">
-                           <span className="text-acc-blue font-black text-[7px] md:text-xs tracking-[0.1em] uppercase">Live Results</span>
-                           <div className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-acc-blue animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.8)]" />
-                        </div>
-                        <div className="text-[6px] md:text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1 md:gap-2">
-                          Real-time
-                          <span className="bg-white/5 px-1 py-0.5 rounded border border-white/10 text-acc-blue text-[6px] md:text-[8px]">XAU/USD</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="relative z-10">
-                    <motion.div 
-                      key={liveAmount}
-                      initial={{ opacity: 0.8, filter: "brightness(2)" }}
-                      animate={{ opacity: 1, filter: "brightness(1)" }}
-                      className="text-base md:text-4xl font-black font-mono tracking-tighter text-white mb-0 md:mb-1"
-                    >
-                      +${Math.floor(liveAmount).toLocaleString()}<span className="text-acc-blue">.{(liveAmount % 1).toFixed(2).split('.')[1]}</span>
-                    </motion.div>
-                    <div className="flex items-center gap-1 md:gap-2">
-                       <div className="flex gap-0.5">
-                         <div className="h-0.5 md:h-1 w-3 md:w-6 bg-acc-blue rounded-full group-hover/card:w-8 transition-all duration-500" />
-                         <div className="h-0.5 md:h-1 w-1 md:w-2 bg-acc-blue/30 rounded-full" />
-                         <div className="h-0.5 md:h-1 w-1.5 md:w-4 bg-acc-blue/60 rounded-full" />
-                       </div>
-                       <span className="text-[6px] md:text-[10px] font-black text-acc-blue/80">+24.5%</span>
-                    </div>
-                  </div>
-
-                  {/* Scanline Effect */}
-                  <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-acc-blue/20 to-transparent top-1/2 -translate-y-1/2 animate-scan" style={{ animationDuration: '3s' }} />
-               </motion.div>
-
-               {/* Carousel Indicators */}
+                {/* Carousel Indicators */}
                <div className="absolute top-4 right-4 flex gap-1.5 z-40 bg-black/40 backdrop-blur-md p-2 rounded-full border border-white/10">
                  {HERO_IMAGES.map((_, i) => (
                    <button 
@@ -350,6 +298,68 @@ export default function Home() {
                    />
                  ))}
                </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Live Results Bar - Center Highlight Section */}
+        <div className="w-full mt-8 md:mt-12 mb-4 md:mb-6 px-4 relative z-30">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mx-auto"
+          >
+            <div className="relative group">
+              {/* Outer Glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-acc-blue/10 via-acc-blue/5 to-acc-blue/20 blur-xl opacity-30 group-hover:opacity-60 transition-opacity" />
+              
+              <div className="relative bg-[#0A0A0A]/90 backdrop-blur-2xl border border-white/10 rounded-xl md:rounded-[24px] p-3 md:p-6 flex flex-row items-center justify-between gap-4 md:gap-6 shadow-[0_15px_40px_rgba(0,0,0,0.8)] overflow-hidden">
+                {/* Left Side: Status */}
+                <div className="flex items-center gap-3 md:gap-4">
+                  <div className="shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-2xl bg-acc-blue/10 border border-acc-blue/20 flex items-center justify-center glow-blue transition-transform group-hover:scale-105 duration-500">
+                    <TrendingUp className="text-acc-blue w-5 h-5 md:w-7 md:h-7" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-0.5">
+                       <span className="text-acc-blue font-black text-[10px] md:text-sm tracking-[0.2em] uppercase">Live</span>
+                       <div className="w-1.5 h-1.5 rounded-full bg-acc-blue animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.8)]" />
+                    </div>
+                    <div className="text-[8px] md:text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1.5">
+                      Real-time
+                      <span className="bg-white/5 px-1.5 py-0.5 rounded border border-white/10 text-acc-blue text-[7px] md:text-[9px]">XAU/USD</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Side: Data */}
+                <div className="flex flex-col items-end">
+                  <motion.div 
+                    key={liveAmount}
+                    initial={{ opacity: 0.8, filter: "brightness(1.5)" }}
+                    animate={{ opacity: 1, filter: "brightness(1)" }}
+                    className="text-xl md:text-4xl font-black font-mono tracking-tighter text-white"
+                  >
+                    +${Math.floor(liveAmount).toLocaleString()}<span className="text-acc-blue">.{(liveAmount % 1).toFixed(2).split('.')[1]}</span>
+                  </motion.div>
+                  <div className="flex items-center gap-1.5 mt-1">
+                     <div className="h-0.5 w-8 bg-acc-blue/20 rounded-full overflow-hidden">
+                        <motion.div 
+                          animate={{ x: [-32, 32] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                          className="h-full w-full bg-acc-blue"
+                        />
+                     </div>
+                     <span className="text-[7px] md:text-[10px] font-black text-acc-blue/80 tracking-widest">+24.5%</span>
+                  </div>
+                </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-acc-blue/5 blur-[30px] rounded-full -mr-12 -mt-12 pointer-events-none" />
+                
+                {/* Horizontal Scanline */}
+                <div className="absolute inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-acc-blue/20 to-transparent top-1/2 -translate-y-1/2 animate-scan pointer-events-none opacity-30" style={{ animationDuration: '3s' }} />
+              </div>
             </div>
           </motion.div>
         </div>
