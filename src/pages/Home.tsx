@@ -424,15 +424,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Media Row */}
+            {/* Social Media Row */}
       <section className="py-10 md:py-16 relative z-10 border-y border-white/5 bg-black/40">
         <div className="max-w-[1600px] mx-auto px-4 flex flex-col items-center gap-8 md:gap-12">
           <div className="flex flex-wrap justify-center gap-6 md:gap-16">
             {[
-              { icon: Send, label: 'Telegram', link: TELEGRAM_LINK, color: 'hover:text-gold-400' },
-              { icon: Instagram, label: 'Instagram', link: 'https://www.instagram.com/xautrading.club', color: 'hover:text-pink-500' },
-              { icon: Facebook, label: 'Facebook', link: 'https://www.facebook.com/people/XAU-VIP-Signals/61571500714876/', color: 'hover:text-blue-500' },
-              { icon: Music, label: 'TikTok', link: 'https://www.tiktok.com/@xautrading.club', color: 'hover:text-cyan-400' }
+              { icon: Send, label: 'Telegram', link: TELEGRAM_LINK, color: 'text-[#0088cc]', shadow: 'shadow-[#0088cc]/20' },
+              { icon: Instagram, label: 'Instagram', link: 'https://www.instagram.com/xautrading.club', color: 'text-[#E4405F]', shadow: 'shadow-[#E4405F]/20' },
+              { icon: Facebook, label: 'Facebook', link: 'https://www.facebook.com/people/XAU-VIP-Signals/61571500714876/', color: 'text-[#1877F2]', shadow: 'shadow-[#1877F2]/20' },
+              { icon: Music, label: 'TikTok', link: 'https://www.tiktok.com/@xautrading.club', color: 'text-[#00F2EA]', shadow: 'shadow-[#00F2EA]/20' }
             ].map((social, i) => (
               <motion.a
                 key={social.label}
@@ -443,10 +443,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ scale: 1.1, y: -5 }}
-                className={`flex flex-col items-center gap-3 group transition-all duration-300 ${social.color}`}
+                className="flex flex-col items-center gap-3 group transition-all duration-300"
               >
-                <div className="w-14 h-14 md:w-20 md:h-20 rounded-[20px] md:rounded-[28px] bg-white/[0.03] border border-white/5 flex items-center justify-center group-hover:border-current group-hover:bg-white/5 transition-all shadow-[0_0_0_0_transparent] group-hover:shadow-[0_10px_30px_-5px_currentColor] group-hover:shadow-current/20">
-                  <social.icon size={24} className="md:w-8 md:h-8" />
+                <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[20px] md:rounded-[28px] bg-white/[0.03] border border-white/5 flex items-center justify-center transition-all ${social.shadow} shadow-[0_10px_30px_-5px_rgba(0,0,0,0.3)] hover:bg-white/5 hover:border-white/20`}>
+                  <social.icon size={24} className={`md:w-8 md:h-8 transition-colors ${social.color}`} />
                 </div>
                 <span className="text-[10px] md:text-sm font-black tracking-[0.2em] uppercase text-gray-500 group-hover:text-white transition-colors">
                   {social.label}
