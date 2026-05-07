@@ -132,7 +132,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
 
 export default function Home() {
   const [heroIndex, setHeroIndex] = React.useState(0);
-  const [liveAmount, setLiveAmount] = React.useState(8450.21);
+  const [liveAmounts, setLiveAmounts] = React.useState([8450.21, 12640.45, 5120.88]);
   const HERO_IMAGES = [
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/1.jpg",
     "https://raw.githubusercontent.com/ahmathmusharraf/XAU-VIP-Trading/refs/heads/main/XAU%20VIP%2B%20Images/2.jpg",
@@ -151,10 +151,10 @@ export default function Home() {
     }, 5000);
 
     const profitTimer = setInterval(() => {
-      setLiveAmount(prev => {
-        const change = (Math.random() * 5 + 0.5) * (Math.random() > 0.3 ? 1 : -0.2);
-        return parseFloat((prev + change).toFixed(2));
-      });
+      setLiveAmounts(prev => prev.map(val => {
+        const change = (Math.random() * 8 + 1) * (Math.random() > 0.35 ? 1 : -0.2);
+        return parseFloat((val + change).toFixed(2));
+      }));
     }, 3000);
 
     return () => {
@@ -307,66 +307,74 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Live Results Bar - Center Highlight Section */}
+        {/* Live Results Bar - Triple Profit Grid */}
         <div className="w-full mt-8 md:mt-12 mb-4 md:mb-6 px-4 relative z-30">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-xl mx-auto"
-          >
-            <div className="relative group">
-              {/* Outer Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-acc-blue/10 via-acc-blue/5 to-acc-blue/20 blur-xl opacity-30 group-hover:opacity-60 transition-opacity" />
-              
-              <div className="relative bg-[#0A0A0A]/90 backdrop-blur-2xl border border-white/10 rounded-xl md:rounded-[24px] p-3 md:p-6 flex flex-row items-center justify-between gap-4 md:gap-6 shadow-[0_15px_40px_rgba(0,0,0,0.8)] overflow-hidden">
-                {/* Left Side: Status */}
-                <div className="flex items-center gap-3 md:gap-4">
-                  <div className="shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-2xl bg-acc-blue/10 border border-acc-blue/20 flex items-center justify-center glow-blue transition-transform group-hover:scale-105 duration-500">
-                    <TrendingUp className="text-acc-blue w-5 h-5 md:w-7 md:h-7" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1.5 md:gap-2 mb-0.5">
-                       <span className="text-acc-blue font-black text-[10px] md:text-sm tracking-[0.2em] uppercase">Live</span>
-                       <div className="w-1.5 h-1.5 rounded-full bg-acc-blue animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.8)]" />
-                    </div>
-                    <div className="text-[8px] md:text-[10px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1.5">
-                      Real-time
-                      <span className="bg-white/5 px-1.5 py-0.5 rounded border border-white/10 text-acc-blue text-[7px] md:text-[9px]">XAU/USD</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Right Side: Data */}
-                <div className="flex flex-col items-end">
-                  <motion.div 
-                    key={liveAmount}
-                    initial={{ opacity: 0.8, filter: "brightness(1.5)" }}
-                    animate={{ opacity: 1, filter: "brightness(1)" }}
-                    className="text-xl md:text-4xl font-black font-mono tracking-tighter text-white"
-                  >
-                    +${Math.floor(liveAmount).toLocaleString()}<span className="text-acc-blue">.{(liveAmount % 1).toFixed(2).split('.')[1]}</span>
-                  </motion.div>
-                  <div className="flex items-center gap-1.5 mt-1">
-                     <div className="h-0.5 w-8 bg-acc-blue/20 rounded-full overflow-hidden">
-                        <motion.div 
-                          animate={{ x: [-32, 32] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                          className="h-full w-full bg-acc-blue"
-                        />
-                     </div>
-                     <span className="text-[7px] md:text-[10px] font-black text-acc-blue/80 tracking-widest">+24.5%</span>
-                  </div>
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-acc-blue/5 blur-[30px] rounded-full -mr-12 -mt-12 pointer-events-none" />
+          <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {[
+              { label: 'GOLD SCALP', tag: 'XAU/USD', color: 'acc-blue' },
+              { label: 'DAILY GOAL', tag: 'VIP+', color: 'gold-500' },
+              { label: 'PROFIT FEED', tag: 'REAL-TIME', color: 'acc-blue' }
+            ].map((display, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="relative group"
+              >
+                {/* Outer Glow */}
+                <div className={`absolute inset-0 bg-gradient-to-r from-${display.color}/10 via-${display.color}/5 to-${display.color}/20 blur-xl opacity-30 group-hover:opacity-60 transition-opacity`} />
                 
-                {/* Horizontal Scanline */}
-                <div className="absolute inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-acc-blue/20 to-transparent top-1/2 -translate-y-1/2 animate-scan pointer-events-none opacity-30" style={{ animationDuration: '3s' }} />
-              </div>
-            </div>
-          </motion.div>
+                <div className="relative bg-[#0A0A0A]/90 backdrop-blur-2xl border border-white/10 rounded-xl md:rounded-[24px] p-4 md:p-5 flex flex-row items-center justify-between gap-3 shadow-[0_15px_40px_rgba(0,0,0,0.8)] overflow-hidden">
+                  {/* Left Side: Status */}
+                  <div className="flex items-center gap-3">
+                    <div className={`shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-${display.color}/10 border border-${display.color}/20 flex items-center justify-center glow-${display.color === 'acc-blue' ? 'blue' : 'gold'} transition-transform group-hover:scale-105 duration-500`}>
+                      <TrendingUp className={`text-${display.color} w-5 h-5 md:w-6 md:h-6`} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                         <span className={`text-${display.color} font-black text-[10px] md:text-xs tracking-[0.2em] uppercase`}>{display.label}</span>
+                         <div className={`w-1.5 h-1.5 rounded-full bg-${display.color} animate-pulse shadow-[0_0_10px_rgba(14,165,233,0.8)]`} />
+                      </div>
+                      <div className="text-[8px] md:text-[9px] text-gray-500 font-bold uppercase tracking-widest flex items-center gap-1.5">
+                        Live
+                        <span className={`bg-white/5 px-1.5 py-0.5 rounded border border-white/10 text-${display.color} text-[7px] md:text-[8px]`}>{display.tag}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Side: Data */}
+                  <div className="flex flex-col items-end">
+                    <motion.div 
+                      key={liveAmounts[idx]}
+                      initial={{ opacity: 0.8, filter: "brightness(1.5)" }}
+                      animate={{ opacity: 1, filter: "brightness(1)" }}
+                      className="text-lg md:text-2xl lg:text-3xl font-black font-mono tracking-tighter text-white"
+                    >
+                      +${Math.floor(liveAmounts[idx]).toLocaleString()}<span className={`text-${display.color}`}>.{(liveAmounts[idx] % 1).toFixed(2).split('.')[1]}</span>
+                    </motion.div>
+                    <div className="flex items-center gap-1.5 mt-1">
+                       <div className={`h-0.5 w-6 md:w-8 bg-${display.color}/20 rounded-full overflow-hidden`}>
+                          <motion.div 
+                            animate={{ x: [-32, 32] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className={`h-full w-full bg-${display.color}`}
+                          />
+                       </div>
+                       <span className={`text-[7px] md:text-[9px] font-black text-${display.color}/80 tracking-widest`}>+24.5%</span>
+                    </div>
+                  </div>
+
+                  {/* Decorative Elements */}
+                  <div className={`absolute top-0 right-0 w-24 h-24 bg-${display.color}/5 blur-[30px] rounded-full -mr-12 -mt-12 pointer-events-none`} />
+                  
+                  {/* Horizontal Scanline */}
+                  <div className={`absolute inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-${display.color}/20 to-transparent top-1/2 -translate-y-1/2 animate-scan pointer-events-none opacity-30`} style={{ animationDuration: '3s' }} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -604,15 +612,15 @@ export default function Home() {
                   className="w-full lg:w-auto bg-acc-blue text-black px-8 md:px-12 py-4 md:py-6 rounded-xl md:rounded-2xl font-black text-lg md:text-xl lg:text-2xl flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(14,165,233,0.4)] hover:shadow-[0_0_60px_rgba(14,165,233,0.7)] transition-all duration-300"
                 >
                   <Send size={24} className="fill-black" />
-                   <span className="flex overflow-hidden">
+                  <span className="flex overflow-hidden">
                     {"JOIN TELEGRAM".split("").map((char, i) => (
                       <motion.span
                         key={i}
                         initial={{ y: 0 }}
                         animate={{ y: [0, -3, 0] }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
+                        transition={{ 
+                          duration: 2, 
+                          repeat: Infinity, 
                           delay: i * 0.05,
                           ease: "easeInOut"
                         }}
