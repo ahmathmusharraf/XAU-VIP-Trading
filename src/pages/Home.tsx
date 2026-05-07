@@ -327,9 +327,10 @@ export default function Home() {
                initial={{ opacity: 0, scale: 0.9 }}
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
-               className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter"
+               className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter flex items-center justify-center gap-3"
              >
                LIVE <span className="text-gradient-gold">PROFITS</span>
+               <CheckCircle2 className="w-6 h-6 md:w-10 md:h-10 text-acc-blue fill-acc-blue/10 animate-pulse" />
              </motion.h2>
              <div className="h-1 w-24 bg-gold-500 mx-auto mt-4 rounded-full glow-gold opacity-50" />
           </div>
@@ -473,8 +474,9 @@ export default function Home() {
                 <div className={`w-14 h-14 md:w-20 md:h-20 rounded-[20px] md:rounded-[28px] bg-white/[0.03] border border-white/5 flex items-center justify-center transition-all ${social.shadow} shadow-[0_10px_30px_-5px_rgba(0,0,0,0.3)] hover:bg-white/5 hover:border-white/20`}>
                   <social.icon size={24} className={`md:w-8 md:h-8 transition-colors ${social.color}`} />
                 </div>
-                <span className="text-[10px] md:text-sm font-black tracking-[0.2em] uppercase text-gray-500 group-hover:text-white transition-colors">
+                <span className="text-[10px] md:text-sm font-black tracking-[0.2em] uppercase text-gray-500 group-hover:text-white transition-colors flex items-center gap-1 md:gap-1.5">
                   {social.label}
+                  <CheckCircle2 className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 text-acc-blue flex-shrink-0" />
                 </span>
               </motion.a>
             ))}
