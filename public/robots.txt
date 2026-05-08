@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://xauvip.plus/sitemap.xml
+Sitemap: https://www.xauvip.com/sitemap.xml
